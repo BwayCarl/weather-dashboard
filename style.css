@@ -1,41 +1,32 @@
 *, *:before, *::after {
     box-sizing: border-box;
-  
 }
-header {
-    text-align: center;
-    color: rgb(233, 239, 245);
-    background-color: #164764;
-    padding: .5rem;
+.navbar {
+        display: block;
+        text-align:center;
+        float: none;
 }
 
 body {
-    margin: 1.5rem;
-    display: flex;
-    flex-direction: column;
-}
-.city-column {
-    padding: 1.5rem
+    margin: 2rem;
 }
 
-#find-city {
-    color: white;
-    background-color: rgb(49, 127, 206);
-}
-
-.card-text {
-    list-style-type: none;
-}
-.result {
-    width: 100%;
-}
 #currentDay {
     vertical-align: middle;
-
 }
-.card {
-    width: 100%;
-    vertical-align: middle;
-    margin-top: 1rem;
+.bg-light {
     padding-top: 1rem;
+}
+
+.city-container {
+    padding-top: 1rem;
+}
+
+li {
+    list-style: none;
+    padding: .5rem;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 2px;
+    padding-bottom: .5rem
 }
