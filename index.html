@@ -20,18 +20,20 @@
         <div class="container-fluid h-100">
             <div class="row">
                 <div class="col-sm-4 bg-light vh-100"> <!--Search title and input form -->
-                        <h5>Search for a City:</h5>
+                    <form id="city-form">   
+                        <label for="city-input"><h5>Search for a City:</h5></label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Enter City" aria-label="Enter City" aria-describedby="basic-addon2">
+                            <input type="text" id="city-input" class="form-control" placeholder="Enter City" aria-label="Enter City">
                             <div class="input-group-append">
                                 <button id="search-btn" class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
-                            
+                    </form>    
                         <div class="row">
                             <div class="col-sm-12 h-100 pb-3" id="searched-cities"> <!-- Auto populated list based on search history -->
                                 <div class="card w-100">
                                     <ul class="list-group list-group-flush" id="search-history">
+                                        <li class="city" id="city-button"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -47,7 +49,7 @@
           
             
 
-            
+
         </div>
 
         
