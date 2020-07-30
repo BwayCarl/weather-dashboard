@@ -27,7 +27,7 @@ $("#find-city").on("click", function(event) {
 let cities = ["New York City"];
 
 function renderCityButtons() {
-    $("#cityButtonsView").empty();
+    $("#city-buttons-view").empty();
 
     // Looping through the array of cities
     for (var i = 0; i < cities.length; i++) {
