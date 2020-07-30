@@ -6,46 +6,52 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-    <link>
     <link rel="stylesheet" href="style.css">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="container">
-        <h2>Weather Dashboard</h2>
-    </header>
-    <aside>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- City Search Column -->
-        <div class="col-md-3">
-                <!-- Search Input and Button -->
-                <label for="city-input"><h5>Search for a City:</h5></label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="city-input" placeholder="City" aria-label="City" aria-describedby="find-city">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="submit" value="City Search" id="find-city"><i class="fas fa-search"></i></button>
-                    </div>
-                    
-                  </div><button class="btn btn-outline-secondary" ></button></div>
-          </aside> 
-             <!-- City Results -->
-           <div class="row col-md-8" id="">
-              <div class="results" id="results">
-                  <div class="card w-100" id="city-view">
-                      <h4>City Search Result </h4><span id="currentDay" ></span>
-                  </div>
-              </div>
-           </div>
-        </div>
-    </div>
-           <!-- Results Area -->
-           
-   
+        <!-- Header -->
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-text mb-0 h2" style="color: #f5f5f5;">Weather Dashboard</span>
+          </nav>
+    
+        <!-- City Search Container -->
+        <div class="container-fluid h-100">
+            <div class="row">
+                <div class="col-sm-4 bg-light vh-100"> <!--Search title and input form -->
+                        <h5>Search for a City:</h5>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Enter City" aria-label="Enter City" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button id="search-btn" class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="col-sm-12 h-100 pb-3" id="searched-cities"> <!-- Auto populated list based on search history -->
+                                <div class="card w-100">
+                                    <ul class="list-group list-group-flush" id="search-history">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
 
-       
+            <div class="col-sm-8 weather-container">
+                <h3><span class="city" id="city">City Here</span></h3> 
+                    <h5><span id="currentDay"></span></h5>
+            </div>
+          
+            
+
+            
+        </div>
+
+        
+
                
        
         
