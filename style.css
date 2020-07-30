@@ -1,3 +1,41 @@
 *, *:before, *::after {
     box-sizing: border-box;
+  
+}
+header {
+    text-align: center;
+    color: rgb(233, 239, 245);
+    background-color: #164764;
+    padding: .5rem;
+}
+
+body {
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.city-column {
+    padding: 1.5rem
+}
+
+#find-city {
+    color: white;
+    background-color: rgb(49, 127, 206);
+}
+
+.card-text {
+    list-style-type: none;
+}
+.result {
+    width: 100%;
+}
+#currentDay {
+    vertical-align: middle;
+
+}
+.card {
+    width: 100%;
+    vertical-align: middle;
+    margin-top: 1rem;
+    padding-top: 1rem;
 }
