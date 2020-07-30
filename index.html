@@ -16,10 +16,12 @@
             <span class="navbar-text mb-0 h2" style="color: #f5f5f5;">Weather Dashboard</span>
           </nav>
     
-        <!-- City Search Container -->
+        
         <div class="container-fluid h-100">
+            <!-- City Search Container -->
             <div class="row">
-                <div class="col-sm-4 bg-light vh-100"> <!--Search title and input form -->
+                <div class="col-sm-4 bg-light vh-100"> 
+                    <!--Search title and input form -->
                     <form id="city-form">   
                         <label for="city-input"><h5>Search for a City:</h5></label>
                         <div class="input-group mb-3">
@@ -29,28 +31,72 @@
                             </div>
                         </div>
                     </form>    
+                    <!-- Auto populated list based on search history -->
                         <div class="row">
-                            <div class="col-sm-12 h-100 pb-3" id="searched-cities"> <!-- Auto populated list based on search history -->
+                            <div class="col-sm-12 h-100 pb-3" id="searched-cities"> 
                                 <div class="card w-100">
                                     <ul class="list-group list-group-flush" id="search-history">
-                                        <li class="city" id="city-button"></li>
+                                        <li class="city" id="city-button" type="button"></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                 </div>
-            </div>
+            
             
 
-            <div class="col-sm-8 weather-container">
-                <h3><span class="city" id="city">City Here</span></h3> 
+            <!-- Search Resuts Container -->
+            <div class="col-sm-8 results-container">
+                <!-- Most Recent Search -->
+                <div class="latest-city">
+                    <h3><span class="city" id="city">City Here</span></h3> 
                     <h5><span id="currentDay"></span></h5>
+                    <br>
+                    <p id="temp">Temperature: <span id=""></span></p>
+                    <p id="hum">Humidity: <span id=""></span></p>
+                    <p id="wind">Wind Speed: <span id=""></span></p>
+                    <p id="uv">UV Index: <span id=""></span></p>
+                </div>
+                <!-- Five Day Forecast -->
+                <div class="five-day-forecast">
+                    <h3>Five Day Forecast:</h3>
+
+                    <!-- Day One -->
+                    <div class="day-1" id="day-1">
+                        <p>Temp: </p>
+                        <p>Humidity: </p>
+                    </div>
+
+                    <!-- Day Two -->
+                    <div class="day-2" id="day-2">
+                        <p>Temp: </p>
+                        <p>Humidity: </p>
+                    </div>
+
+                    <!-- Day Three -->
+                    <div class="day-3" id="day-3">
+                        <p>Temp: </p>
+                        <p>Humidity: </p>
+                    </div>
+
+                    <!-- Day Four -->
+                    <div class="day-4" id="day-4">
+                        <p>Temp: </p>
+                        <p>Humidity: </p>
+                    </div>
+
+                    <!-- Day Five -->
+                    <div class="day-5" id="day-5">
+                        <p>Temp: </p>
+                        <p>Humidity: </p>
+                    </div>
+                </div>
             </div>
           
             
 
 
-        </div>
+      </div>  
 
         
 
