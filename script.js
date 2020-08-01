@@ -1,5 +1,10 @@
 //Variables
 const today = moment().format("dddd, MMMM Do, YYYY"); // Current day
+const forecastDay1 = moment().add(1,'days').format("MMM Do"); // Forecast day 1
+const forecastDay2 = moment().add(2,'days').format("MMM Do"); // Forecast day 2
+const forecastDay3 = moment().add(3,'days').format("MMM Do"); // Forecast day 3
+const forecastDay4 = moment().add(4,'days').format("MMM Do"); // Forecast day 4
+const forecastDay5 = moment().add(5,'days').format("MMM Do"); // Forecast day 5
 
 const cityName = document.getElementById("#city-input"); // City search
 const search =  document.getElementById("#search-btn"); // Search button
@@ -23,8 +28,17 @@ const apiKey = "&APPID=5accc33209d1c0dd9925ae90d4b60f93"; // API Key
 $(document).ready(function() {
 });
 
-$("#currentDay").append(today) // Adds curent under the city name.
+// Dates for Current Weather reading and 5 Day forecast.
 
+$("#currentDay").append(today) // Adds current under the city name.
+$("#day-1").append(forecastDay1) // ______________________________
+$("#day-2").append(forecastDay2) // 
+$("#day-3").append(forecastDay3) //  Dates for 5 day foreecast.
+$("#day-4").append(forecastDay4) // 
+$("#day-5").append(forecastDay5) //________________________________ 
+
+
+// (https://openweathermap.org/current#current_JSON)
 
 // Current weather request
 
@@ -38,6 +52,7 @@ $(search).on("click", function(event) {
         url: weatherQueryURL,
         method: "GET"
     }).then(function(response) {
+      console.log(response)
         $("#city-input").text(JSON.stringify(response));
     });
 console.log(city)
