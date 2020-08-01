@@ -8,35 +8,55 @@ const temperature = document.getElementById("#temp"); // Current Temperature
 const humidity = document.getElementById("hum"); // Current Humidity
 const windSpeed = document.getElementById("#wind"); // Current Wind Speed
 const uvIndex = document.getElementById("#uv"); // Current UV index
+//________________________________________________________________
+
+// API Variables
+const weatherApi = "http://api.openweathermap.org/data/2.5/weather?q=" // Current Weather URL (https://openweathermap.org/current#one)
+const forecastApi = "http://api.openweathermap.org/data/2.5/forecast?q=" // 5-Day Forecast URL (https://openweathermap.org/forecast5#5days)
+const units =  "&units=imperial"; // Temperature conversion to Farenheit (https://openweathermap.org/current#data)
+const uvApi =  "https://api.openweathermap.org/data/2.5/uvi?lat="; // UV Index request (https://openweathermap.org/api/uvi#current)
 
 const apiKey = "&APPID=5accc33209d1c0dd9925ae90d4b60f93"; // API Key
-
-
-
-let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-    console.log(searchHistory);
+//__________________________________________________________________
 
 
 $(document).ready(function() {
 });
 
-$("#currentDay").append(today) // Adds curent day to the page.
+$("#currentDay").append(today) // Adds curent under the city name.
 
 
-
+// Current weather request
 
 $(search).on("click", function(event) {
     event.preventDefault();
-
+    
     let city = $("#city-input").val();
-    let queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + apiKey;
+    let weatherQueryURL = weatherAPI + cityName + apiKey;
 
     $.ajax({
-        url: queryURL,
+        url: weatherQueryURL,
         method: "GET"
     }).then(function(response) {
         $("#city-input").text(JSON.stringify(response));
     });
+console.log(city)
+});
+
+// 5-Day forecast request
+
+$(search).on("click", function(event) {
+  event.preventDefault();
+  
+  let city = $("#city-input").val();
+  let forecastQueryURL = forecastAPI + cityName + apiKey;
+
+  $.ajax({
+      url: forecastQueryURL,
+      method: "GET"
+  }).then(function(response) {
+      $("#city-input").text(JSON.stringify(response));
+  });
 console.log(city)
 });
 
@@ -68,7 +88,13 @@ function renderCityButtons() {
       cities.push(city);
 
       renderCityButtons();
+      localStorage.setItem(cityName, JSON.stringify(city));
     });
+
+
+  
+      $(city).val(localStorage.getItem("#city-button"));
+    
 
     // Retrieve weather info from previously rendered buttons in the search history.
     $("#city-button").on("click", function(event) {
@@ -76,4 +102,3 @@ function renderCityButtons() {
   
         
       });
-  
