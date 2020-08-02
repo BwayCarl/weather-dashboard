@@ -109,34 +109,43 @@ $(search).on("click", function(event) {
   event.preventDefault();
   
   let city = $("#city-input").val();
-  let forecastQueryURL = forecastApi + city + apiKey;
-  console.log(forecastQueryURL)
+  let forecastQueryURL = forecastApi + city + units + apiKey;
 
-  // Day -1 
   $.ajax({
       url: forecastQueryURL,
       method: "GET"
   }).then(function(response) {
     
-    console.log(response.list[6].main.temp);
+    
+   let roundTemp1 = Math.floor(response.list[6].main.temp);
+   let roundTemp2 = Math.floor(response.list[14].main.temp);
+   let roundTemp3 = Math.floor(response.list[22].main.temp);
+   let roundTemp4 = Math.floor(response.list[30].main.temp);
+   let roundTemp5 = Math.floor(response.list[38].main.temp);
+   // Day-1  
+   //console.log(roundTemp1)
     $("#weather-icon-1").attr("src", getIcon + (response.list[6].weather[0].icon) + ".png");
-    $("#temp-1").html(response.list[6].main.temp + "º F");
+    $("#temp-1").html(roundTemp1 + "º F");
     $("#hum-1").html(response.list[6].main.humidity + " %");
 
+    // Day-2 
     $("#weather-icon-2").attr("src", getIcon + (response.list[14].weather[0].icon) + ".png");
-    $("#temp-2").html(response.list[14].main.temp + "º F");
+    $("#temp-2").html(roundTemp2 + "º F");
     $("#hum-2").html(response.list[14].main.humidity + " %");
 
+    // Day-3 
     $("#weather-icon-3").attr("src", getIcon + (response.list[22].weather[0].icon) + ".png");
-    $("#temp-3").html(response.list[22].main.temp + "º F");
+    $("#temp-3").html(roundTemp3 + "º F");
     $("#hum-3").html(response.list[22].main.humidity + " %");
 
+    // Day-4 
     $("#weather-icon-4").attr("src", getIcon + (response.list[30].weather[0].icon) + ".png");
-    $("#temp-4").html(response.list[30].main.temp + "º F");
+    $("#temp-4").html(roundTemp4 + "º F");
     $("#hum-4").html(response.list[30].main.humidity + " %");
 
+    // Day-5 
     $("#weather-icon-5").attr("src", getIcon + (response.list[38].weather[0].icon) + ".png");
-    $("#temp-5").html(response.list[38].main.temp + "º F");
+    $("#temp-5").html(roundTemp5 + "º F");
     $("#hum-5").html(response.list[38].main.humidity + " %");
 
   });
