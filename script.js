@@ -83,21 +83,21 @@ $(search).on("click", function(event) {
 
      
         if (uvIndex < 3) {
-          $(".uv").addClass("uv-low")
+          $(".uv").addClass("uv-low");
         }
         else if (uvIndex < 6) {
-          $(".uv").addClass("uv-moderate")
+          $(".uv").addClass("uv-moderate");
 
         } else if (uvIndex < 8) {
-        $(".uv").addClass("uv-high")
+        $(".uv").addClass("uv-high");
 
         } else if (uvIndex < 11) {
-        $(".uv").addClass("uv-veryHigh")
+        $(".uv").addClass("uv-veryHigh");
 
         } else {
-        $(".uv").addClass("uv-extreme")
+        $(".uv").addClass("uv-extreme");
         
-        }
+        };
       })
     });
   });
@@ -110,12 +110,35 @@ $(search).on("click", function(event) {
   
   let city = $("#city-input").val();
   let forecastQueryURL = forecastApi + city + apiKey;
+  console.log(forecastQueryURL)
 
+  // Day -1 
   $.ajax({
       url: forecastQueryURL,
       method: "GET"
   }).then(function(response) {
-    $("#").html(response.main.temp);
+    
+    console.log(response.list[6].main.temp);
+    $("#weather-icon-1").attr("src", getIcon + (response.list[6].weather[0].icon) + ".png");
+    $("#temp-1").html(response.list[6].main.temp + "º F");
+    $("#hum-1").html(response.list[6].main.humidity + " %");
+
+    $("#weather-icon-2").attr("src", getIcon + (response.list[14].weather[0].icon) + ".png");
+    $("#temp-2").html(response.list[14].main.temp + "º F");
+    $("#hum-2").html(response.list[14].main.humidity + " %");
+
+    $("#weather-icon-3").attr("src", getIcon + (response.list[22].weather[0].icon) + ".png");
+    $("#temp-3").html(response.list[22].main.temp + "º F");
+    $("#hum-3").html(response.list[22].main.humidity + " %");
+
+    $("#weather-icon-4").attr("src", getIcon + (response.list[30].weather[0].icon) + ".png");
+    $("#temp-4").html(response.list[30].main.temp + "º F");
+    $("#hum-4").html(response.list[30].main.humidity + " %");
+
+    $("#weather-icon-5").attr("src", getIcon + (response.list[38].weather[0].icon) + ".png");
+    $("#temp-5").html(response.list[38].main.temp + "º F");
+    $("#hum-5").html(response.list[38].main.humidity + " %");
+
   });
 
 });
