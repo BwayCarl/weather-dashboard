@@ -33,6 +33,12 @@ const getIcon = "http://openweathermap.org/img/wn/"; // Weather Image Icon URL (
 $(document).ready(function() {
 });
 
+if (localStorage.getItem("city") === null) {
+  var cities = [];
+} else {
+  var cities = JSON.parse(localStorage.getItem("city"));
+  renderCityButtons();
+};
 // Dates for Current Weather reading and 5 Day forecast.
 
 $("#currentDay").append(today) // Adds current under the city name.
@@ -175,7 +181,7 @@ $(search).on("click", function(event) {
 
 //Create buttons for searched cities
 
-let cities = [];
+//let cities = [];
 
 function renderCityButtons() {
     $("#city-button").empty();
@@ -202,21 +208,16 @@ function renderCityButtons() {
       cities.push(city);
 
       renderCityButtons();
-      localStorage.setItem(cityName, JSON.stringify(city));
+      localStorage.setItem("city", JSON.stringify(cities));
+      console.log(cities)
     });
 
 
   
-      $(cities).val(localStorage.getItem("#city-button"));
-    
+      var cities = JSON.parse(localStorage.getItem("city"));
+      renderCityButtons()
 
     // Retrieve weather info from previously rendered buttons in the search history.
-    $("#city-button").on("click", function(event) {
-        event.preventDefault();
-  
-        
-
-      });
-
+    
 
       
