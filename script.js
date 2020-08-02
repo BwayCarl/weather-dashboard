@@ -50,7 +50,6 @@ $(search).on("click", function(event) {
     event.preventDefault();
 
     let city = $("#city-input").val();
-   
     let weatherQueryURL = weatherApi + city + units + apiKey;
 
     $.ajax({
@@ -58,24 +57,13 @@ $(search).on("click", function(event) {
         method: "GET"
     }).then(function(response) {
 
-      console.log(city) 
+      let roundTemp = Math.floor(response.main.temp); // Rounds down temperature to eliminate decimals.
+
       $("#city").html(response.name);
-
-      console.log(response.weather[0].icon);
       $("#weather-icon").attr("src", getIcon + (response.weather[0].icon) + ".png");
-
-      console.log(response.main.temp);
-      $("#temp").html(response.main.temp + "º F");
-
-      console.log(response.main.humidity);
+      $("#temp").html(roundTemp + "º F");
       $("#hum").html(response.main.humidity + " %");
-
-      console.log(response.wind.speed)
       $("#wind").html(response.wind.speed + " MPH");
-      
-      console.log(response);
-      console.log(response.coord.lat)
-      console.log(response.coord.lon)
 
 
       // Current UV Index request ____________________________
@@ -89,13 +77,33 @@ $(search).on("click", function(event) {
           method: "GET"
       }).then(function(response) {
         
-        $("#uv").html(response.main.temp);
+        $("#uv").html(response.value);
         
-      });
+         // UV Index Color Coding (https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage)
+      
+         let uvIndex = (response.value);
 
+     
+        if (uvIndex < 3) {
+          $(".uv").addClass("uv-low")
+        }
+        else if (uvIndex < 6) {
+          $(".uv").addClass("uv-moderate")
+
+        } else if (uvIndex < 8) {
+        $(".uv").addClass("uv-high")
+
+        } else if (uvIndex < 11) {
+        $(".uv").addClass("uv-veryHigh")
+
+        } else {
+        $(".uv").addClass("uv-extreme")
+        
+        }
+      })
     });
+  });
 
-});
 
 
 
@@ -105,7 +113,7 @@ $(search).on("click", function(event) {
   event.preventDefault();
   
   let city = $("#city-input").val();
-  let forecastQueryURL = forecastApi + cityName + apiKey;
+  let forecastQueryURL = forecastApi + city + apiKey;
 
   $.ajax({
       url: forecastQueryURL,
