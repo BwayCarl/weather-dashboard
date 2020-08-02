@@ -45,7 +45,7 @@ li {
 }
 /* UV Index background colors */
 .uv-low {
-    color: #ffffff;
+    color :#ffffff;
     background-color: rgb(47, 214, 119);
     padding: .25rem .75rem;
 }
