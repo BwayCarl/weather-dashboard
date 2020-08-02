@@ -7,6 +7,7 @@ const forecastDay4 = moment().add(4,'days').format("MMM Do"); // Forecast day 4
 const forecastDay5 = moment().add(5,'days').format("MMM Do"); // Forecast day 5
 
 const search =  $("#search-btn"); // Search button
+const newCityBtn = $("#city-button");
 const cityName = document.getElementById("#city-input"); // City search
 const temperature = document.getElementById("#temp"); // Current Temperature
 const icon = document.getElementById("weather-icon"); // Current Weather Icon
@@ -84,18 +85,38 @@ $(search).on("click", function(event) {
      
         if (uvIndex < 3) {
           $(".uv").addClass("uv-low");
+          $(".uv").removeClass("uv-moderate");
+          $(".uv").removeClass("uv-high");
+          $(".uv").removeClass("uv-veryHigh");
+          $(".uv").removeClass("uv-extreme");
         }
         else if (uvIndex < 6) {
+          $(".uv").removeClass("uv-low");
           $(".uv").addClass("uv-moderate");
+          $(".uv").removeClass("uv-high");
+          $(".uv").removeClass("uv-veryHigh");
+          $(".uv").removeClass("uv-extreme");
 
         } else if (uvIndex < 8) {
-        $(".uv").addClass("uv-high");
+          $(".uv").removeClass("uv-low");
+          $(".uv").removeClass("uv-moderate");
+          $(".uv").addClass("uv-high");
+          $(".uv").removeClass("uv-veryHigh");
+          $(".uv").removeClass("uv-extreme");
 
         } else if (uvIndex < 11) {
-        $(".uv").addClass("uv-veryHigh");
+          $(".uv").removeClass("uv-low");
+          $(".uv").removeClass("uv-moderate");
+          $(".uv").removeClass("uv-high");
+          $(".uv").addClass("uv-veryHigh");
+          $(".uv").removeClass("uv-extreme");
 
         } else {
-        $(".uv").addClass("uv-extreme");
+          $(".uv").removeClass("uv-low");
+          $(".uv").removeClass("uv-moderate");
+          $(".uv").removeClass("uv-high");
+          $(".uv").removeClass("uv-veryHigh");
+          $(".uv").addClass("uv-extreme");
         
         };
       })
@@ -116,14 +137,14 @@ $(search).on("click", function(event) {
       method: "GET"
   }).then(function(response) {
     
-    
+    // Math floor function to eliminate decimals in 5 Day forecast temperatures.
    let roundTemp1 = Math.floor(response.list[6].main.temp);
    let roundTemp2 = Math.floor(response.list[14].main.temp);
    let roundTemp3 = Math.floor(response.list[22].main.temp);
    let roundTemp4 = Math.floor(response.list[30].main.temp);
    let roundTemp5 = Math.floor(response.list[38].main.temp);
+
    // Day-1  
-   //console.log(roundTemp1)
     $("#weather-icon-1").attr("src", getIcon + (response.list[6].weather[0].icon) + ".png");
     $("#temp-1").html(roundTemp1 + "º F");
     $("#hum-1").html(response.list[6].main.humidity + " %");
@@ -162,12 +183,12 @@ function renderCityButtons() {
     // Looping through the array of cities
     for (var i = 0; i < cities.length; i++) {
 
-        // Generate buttons for each city in the array.
+      // Generate buttons for each city in the array.
         var newCity = $("<li>");
-        newCity.addClass("city");
+        newCity.addClass("list-group-item");
         newCity.attr("data-name", cities[i]);
         newCity.text(cities[i]);
-        newCity.val([]);
+        newCity.val("search-history");
         
         $("#city-button").prepend(newCity); //Most recent search lands on top of list.
       }
@@ -186,7 +207,7 @@ function renderCityButtons() {
 
 
   
-      $(city).val(localStorage.getItem("#city-button"));
+      $(cities).val(localStorage.getItem("#city-button"));
     
 
     // Retrieve weather info from previously rendered buttons in the search history.
