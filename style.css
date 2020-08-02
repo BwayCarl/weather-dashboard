@@ -45,7 +45,7 @@ li {
 }
 /* UV Index background colors */
 .uv-low {
-    color: #f5f5f5;
+    color: #ffffff;
     background-color: rgb(47, 214, 119);
     padding: .25rem .75rem;
 }
@@ -62,13 +62,13 @@ li {
     padding: .2rem .75rem;
 }
 .uv-veryHigh {
-    color: #f5f5f5;
+    color: #ffffff;
     background-color: rgb(194, 49, 49);
     padding: .2rem .75rem;
 }
 
 .uv-extreme {
-    color: #f5f5f5;
+    color: #ffffff;
     background-color: rgb(151, 58, 151);
     padding: .2rem .75rem;
 }
