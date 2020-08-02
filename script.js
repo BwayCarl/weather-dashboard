@@ -42,8 +42,6 @@ $("#day-4").append(forecastDay4) //
 $("#day-5").append(forecastDay5) // --------------------------------
 
 
-// (https://openweathermap.org/current#current_JSON)
-
 // Current weather request ____________________________
 
 $(search).on("click", function(event) {
@@ -76,9 +74,9 @@ $(search).on("click", function(event) {
           url: uvQueryURL,
           method: "GET"
       }).then(function(response) {
-        
-        $("#uv").html(response.value);
-        
+      
+      $("#uv").html(response.value);
+      
          // UV Index Color Coding (https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage)
       
          let uvIndex = (response.value);
@@ -103,8 +101,6 @@ $(search).on("click", function(event) {
       })
     });
   });
-
-
 
 
 // 5-Day forecast request
