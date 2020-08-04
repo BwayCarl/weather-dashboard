@@ -43,6 +43,10 @@ li {
     border: 1rem;
 
 }
+
+.days p {
+    font-size: .8rem;
+}
 /* UV Index background colors */
 .uv-low {
     color :#ffffff;
