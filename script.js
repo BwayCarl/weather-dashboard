@@ -20,25 +20,26 @@ const uvIndex = document.getElementById("#uv"); // Current UV index
 // API Variables
 
 const apiKey = "&APPID=5accc33209d1c0dd9925ae90d4b60f93"; // API Key
-
 const weatherApi = "http://api.openweathermap.org/data/2.5/weather?q=" // Current Weather URL (https://openweathermap.org/current#one)
 const forecastApi = "http://api.openweathermap.org/data/2.5/forecast?q=" // 5-Day Forecast URL (https://openweathermap.org/forecast5#5days)
-
 const uvApi =  "https://api.openweathermap.org/data/2.5/uvi?lat="; // UV Index URL (https://openweathermap.org/api/uvi#current)
 const units =  "&units=imperial"; // Temperature conversion to Farenheit (https://openweathermap.org/current#data)
-const getIcon = "http://openweathermap.org/img/wn/"; // Weather Image Icon URL (https://openweathermap.org/weather-conditions)
+const iconApi = "http://openweathermap.org/img/wn/"; // Weather Image Icon URL (https://openweathermap.org/weather-conditions)
 //__________________________________________________________________
 
 
 $(document).ready(function() {
 });
 
+
 if (localStorage.getItem("city") === null) {
   var cities = [];
+
 } else {
   var cities = JSON.parse(localStorage.getItem("city"));
   renderCityButtons();
 };
+
 // Dates for Current Weather reading and 5 Day forecast.
 
 $("#currentDay").append(today) // Adds current under the city name.
@@ -57,6 +58,7 @@ $(search).on("click", function(event) {
     let city = $("#city-input").val();
     let weatherQueryURL = weatherApi + city + units + apiKey;
 
+  
     $.ajax({
         url: weatherQueryURL,
         method: "GET"
@@ -65,7 +67,7 @@ $(search).on("click", function(event) {
       let roundTemp = Math.floor(response.main.temp); // Rounds down temperature to eliminate decimals.
 
       $("#city").html(response.name);
-      $("#weather-icon").attr("src", getIcon + (response.weather[0].icon) + ".png");
+      $("#weather-icon").attr("src", iconApi + (response.weather[0].icon) + ".png");
       $("#temp").html(roundTemp + "º F");
       $("#hum").html(response.main.humidity + " %");
       $("#wind").html(response.wind.speed + " MPH");
@@ -151,27 +153,27 @@ $(search).on("click", function(event) {
    let roundTemp5 = Math.floor(response.list[38].main.temp);
 
    // Day-1  
-    $("#weather-icon-1").attr("src", getIcon + (response.list[6].weather[0].icon) + ".png");
+    $("#weather-icon-1").attr("src", iconApi + (response.list[6].weather[0].icon) + ".png");
     $("#temp-1").html(roundTemp1 + "º F");
     $("#hum-1").html(response.list[6].main.humidity + " %");
 
     // Day-2 
-    $("#weather-icon-2").attr("src", getIcon + (response.list[14].weather[0].icon) + ".png");
+    $("#weather-icon-2").attr("src", iconApi + (response.list[14].weather[0].icon) + ".png");
     $("#temp-2").html(roundTemp2 + "º F");
     $("#hum-2").html(response.list[14].main.humidity + " %");
 
     // Day-3 
-    $("#weather-icon-3").attr("src", getIcon + (response.list[22].weather[0].icon) + ".png");
+    $("#weather-icon-3").attr("src", iconApi + (response.list[22].weather[0].icon) + ".png");
     $("#temp-3").html(roundTemp3 + "º F");
     $("#hum-3").html(response.list[22].main.humidity + " %");
 
     // Day-4 
-    $("#weather-icon-4").attr("src", getIcon + (response.list[30].weather[0].icon) + ".png");
+    $("#weather-icon-4").attr("src", iconApi + (response.list[30].weather[0].icon) + ".png");
     $("#temp-4").html(roundTemp4 + "º F");
     $("#hum-4").html(response.list[30].main.humidity + " %");
 
     // Day-5 
-    $("#weather-icon-5").attr("src", getIcon + (response.list[38].weather[0].icon) + ".png");
+    $("#weather-icon-5").attr("src", iconApi + (response.list[38].weather[0].icon) + ".png");
     $("#temp-5").html(roundTemp5 + "º F");
     $("#hum-5").html(response.list[38].main.humidity + " %");
 
@@ -180,8 +182,6 @@ $(search).on("click", function(event) {
 });
 
 //Create buttons for searched cities
-
-//let cities = [];
 
 function renderCityButtons() {
     $("#city-button").empty();
@@ -199,8 +199,10 @@ function renderCityButtons() {
         $("#city-button").prepend(newCity); //Most recent search lands on top of list.
       }
     }
+    let city =[""]
 
     // Search button on click for new city search.
+
     $("#search-btn").on("click", function(event) {
       event.preventDefault();
 
@@ -215,9 +217,15 @@ function renderCityButtons() {
 
   
       var cities = JSON.parse(localStorage.getItem("city"));
-      renderCityButtons()
+      renderCityButtons();
 
     // Retrieve weather info from previously rendered buttons in the search history.
     
+    
 
-      
+     $(document).on("click", ".data-name", function (event) {
+     event.preventDefault();
+      console.log("run");
+     
+     });
+     
