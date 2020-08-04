@@ -31,7 +31,8 @@ const iconApi = "http://openweathermap.org/img/wn/"; // Weather Image Icon URL (
 $(document).ready(function() {
 });
 
-
+  // Retrieve weather info from previously rendered buttons in the search history.
+  
 if (localStorage.getItem("city") === null) {
   var cities = [];
 
@@ -215,17 +216,10 @@ function renderCityButtons() {
     });
 
 
-  
-      var cities = JSON.parse(localStorage.getItem("city"));
-      renderCityButtons();
-
-    // Retrieve weather info from previously rendered buttons in the search history.
-    
-    
-
      $(document).on("click", ".data-name", function (event) {
      event.preventDefault();
       console.log("run");
      
      });
+     
      
