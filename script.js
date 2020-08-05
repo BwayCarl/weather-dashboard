@@ -19,11 +19,11 @@ const uvIndex = document.getElementById("#uv"); // Current UV index
 // API Variables
 
 const apiKey = "&APPID=5accc33209d1c0dd9925ae90d4b60f93"; // API Key
-const weatherApi = "http://api.openweathermap.org/data/2.5/weather?q=" // Current Weather URL (https://openweathermap.org/current#one)
-const forecastApi = "http://api.openweathermap.org/data/2.5/forecast?q=" // 5-Day Forecast URL (https://openweathermap.org/forecast5#5days)
+const weatherApi = "https://api.openweathermap.org/data/2.5/weather?q=" // Current Weather URL (https://openweathermap.org/current#one)
+const forecastApi = "https://api.openweathermap.org/data/2.5/forecast?q=" // 5-Day Forecast URL (https://openweathermap.org/forecast5#5days)
 const uvApi =  "https://api.openweathermap.org/data/2.5/uvi?lat="; // UV Index URL (https://openweathermap.org/api/uvi#current)
 const units =  "&units=imperial"; // Temperature conversion to Farenheit (https://openweathermap.org/current#data)
-const iconApi = "http://openweathermap.org/img/wn/"; // Weather Image Icon URL (https://openweathermap.org/weather-conditions)
+const iconApi = "https://openweathermap.org/img/wn/"; // Weather Image Icon URL (https://openweathermap.org/weather-conditions)
 //__________________________________________________________________
 
 // Dates for Current Weather reading and 5 Day forecast.
@@ -147,7 +147,7 @@ function forecastWeather() {
   }).then(function(response) {
     
   // Math floor function to eliminate decimals in 5 Day forecast temperatures.
-  
+
    let roundTemp1 = Math.floor(response.list[6].main.temp);
    let roundTemp2 = Math.floor(response.list[14].main.temp);
    let roundTemp3 = Math.floor(response.list[22].main.temp);
