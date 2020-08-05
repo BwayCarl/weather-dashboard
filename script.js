@@ -39,7 +39,8 @@ $("#day-5").append(forecastDay5) // --------------------------------
 $(document).ready(function() {
 });
 
-// Retrieve previously rendered buttons from the search history in localStorage.
+
+  // Retrieve previously rendered buttons from the search history in localStorage.
   
 if (localStorage.getItem("city") === null) {
   var cities = [];
@@ -87,7 +88,6 @@ $(searchCity).on("click", function(event) {
          // UV Index Color Coding (https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage)
       
          let uvIndex = (response.value);
-
      
         if (uvIndex < 3) {
           $(".uv").addClass("uv-low");
@@ -197,7 +197,7 @@ function renderCityButtons() {
         $("#city-button").prepend(newCity); //Most recent search lands on top of list.
       }
     }
-    let city =[]
+    let city =[""]
 
     // Search button on click for new city search.
 
@@ -212,16 +212,11 @@ function renderCityButtons() {
     });
 
 
-     $(document).on("click", ".data-name", function (event) {
-     event.preventDefault();
-      console.log("run");
-     
-     });
-     
 // Return results for previously searched cities on already rendered buttons.
 
-$("#search-history").on("click", function(event) {
-  event.preventDefault();
 
-  console.log("run")
-});
+$(document).on("click", "li", function () {
+   
+  console.log("run");
+ 
+ });
