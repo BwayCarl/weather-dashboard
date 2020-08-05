@@ -39,8 +39,7 @@ $("#day-5").append(forecastDay5) // --------------------------------
 $(document).ready(function() {
 });
 
-
-  // Retrieve previously rendered buttons from the search history in localStorage.
+// Retrieve previously rendered buttons from the search history in localStorage.
   
 if (localStorage.getItem("city") === null) {
   var cities = [];
@@ -50,91 +49,95 @@ if (localStorage.getItem("city") === null) {
   renderCityButtons();
 };
 
-// Current weather request ____________________________
-
-$(searchCity).on("click", function(event) {
-    event.preventDefault();
-  
-    let city = $("#city-input").val();
-    let weatherQueryURL = weatherApi + city + units + apiKey;
-  
-    $.ajax({
-        url: weatherQueryURL,
-        method: "GET"
-    }).then(function(response) {
-
-      let roundTemp = Math.floor(response.main.temp); // Rounds down temperature to eliminate decimals.
-
-      $("#city").html(response.name);
-      $("#weather-icon").attr("src", iconApi + (response.weather[0].icon) + ".png");
-      $("#temp").html(roundTemp + "º F");
-      $("#hum").html(response.main.humidity + " %");
-      $("#wind").html(response.wind.speed + " MPH");
-
-
-      // Current UV Index request ____________________________
-
-      let lat = response.coord.lat;
-      let lon = response.coord.lon;
-      let uvQueryURL = uvApi + lat + "&lon=" + lon + apiKey;
-
-      $.ajax({
-          url: uvQueryURL,
-          method: "GET"
-      }).then(function(response) {
-      
-      $("#uv").html(response.value);
-      
-         // UV Index Color Coding (https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage)
-      
-         let uvIndex = (response.value);
-     
-        if (uvIndex < 3) {
-          $(".uv").addClass("uv-low");
-          $(".uv").removeClass("uv-moderate");
-          $(".uv").removeClass("uv-high");
-          $(".uv").removeClass("uv-veryHigh");
-          $(".uv").removeClass("uv-extreme");
-        }
-        else if (uvIndex < 6) {
-          $(".uv").removeClass("uv-low");
-          $(".uv").addClass("uv-moderate");
-          $(".uv").removeClass("uv-high");
-          $(".uv").removeClass("uv-veryHigh");
-          $(".uv").removeClass("uv-extreme");
-
-        } else if (uvIndex < 8) {
-          $(".uv").removeClass("uv-low");
-          $(".uv").removeClass("uv-moderate");
-          $(".uv").addClass("uv-high");
-          $(".uv").removeClass("uv-veryHigh");
-          $(".uv").removeClass("uv-extreme");
-
-        } else if (uvIndex < 11) {
-          $(".uv").removeClass("uv-low");
-          $(".uv").removeClass("uv-moderate");
-          $(".uv").removeClass("uv-high");
-          $(".uv").addClass("uv-veryHigh");
-          $(".uv").removeClass("uv-extreme");
-
-        } else {
-          $(".uv").removeClass("uv-low");
-          $(".uv").removeClass("uv-moderate");
-          $(".uv").removeClass("uv-high");
-          $(".uv").removeClass("uv-veryHigh");
-          $(".uv").addClass("uv-extreme");
-        
-        };
-      })
-    });
-});
-
-
-// 5-Day forecast request
 
 $(searchCity).on("click", function(event) {
   event.preventDefault();
   
+forecastWeather()
+
+});
+
+// Current weather request ____________________________
+
+function currentWeather() {
+
+
+  let city = $("#city-input").val();
+  let weatherQueryURL = weatherApi + city + units + apiKey;
+
+  $.ajax({
+      url: weatherQueryURL,
+      method: "GET"
+  }).then(function(response) {
+  let roundTemp = Math.floor(response.main.temp); // Rounds down temperature to eliminate decimals.
+
+  $("#city").html(response.name);
+  $("#weather-icon").attr("src", iconApi + (response.weather[0].icon) + ".png");
+  $("#temp").html(roundTemp + "º F");
+  $("#hum").html(response.main.humidity + " %");
+  $("#wind").html(response.wind.speed + " MPH");
+
+
+  // Current UV Index request ____________________________
+
+  let lat = response.coord.lat;
+  let lon = response.coord.lon;
+  let uvQueryURL = uvApi + lat + "&lon=" + lon + apiKey;
+
+  $.ajax({
+      url: uvQueryURL,
+      method: "GET"
+  }).then(function(response) {
+  
+  $("#uv").html(response.value);
+  
+     // UV Index Color Coding (https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage)
+  
+     let uvIndex = (response.value);
+ 
+    if (uvIndex < 3) {
+      $(".uv").addClass("uv-low");
+      $(".uv").removeClass("uv-moderate");
+      $(".uv").removeClass("uv-high");
+      $(".uv").removeClass("uv-veryHigh");
+      $(".uv").removeClass("uv-extreme");
+    }
+    else if (uvIndex < 6) {
+      $(".uv").removeClass("uv-low");
+      $(".uv").addClass("uv-moderate");
+      $(".uv").removeClass("uv-high");
+      $(".uv").removeClass("uv-veryHigh");
+      $(".uv").removeClass("uv-extreme");
+
+    } else if (uvIndex < 8) {
+      $(".uv").removeClass("uv-low");
+      $(".uv").removeClass("uv-moderate");
+      $(".uv").addClass("uv-high");
+      $(".uv").removeClass("uv-veryHigh");
+      $(".uv").removeClass("uv-extreme");
+
+    } else if (uvIndex < 11) {
+      $(".uv").removeClass("uv-low");
+      $(".uv").removeClass("uv-moderate");
+      $(".uv").removeClass("uv-high");
+      $(".uv").addClass("uv-veryHigh");
+      $(".uv").removeClass("uv-extreme");
+
+    } else {
+      $(".uv").removeClass("uv-low");
+      $(".uv").removeClass("uv-moderate");
+      $(".uv").removeClass("uv-high");
+      $(".uv").removeClass("uv-veryHigh");
+      $(".uv").addClass("uv-extreme");
+    
+    };
+  });
+  });
+}
+
+// 5-Day forecast request
+
+function forecastWeather() {
   let city = $("#city-input").val();
   let forecastQueryURL = forecastApi + city + units + apiKey;
 
@@ -143,7 +146,8 @@ $(searchCity).on("click", function(event) {
       method: "GET"
   }).then(function(response) {
     
-    // Math floor function to eliminate decimals in 5 Day forecast temperatures.
+  // Math floor function to eliminate decimals in 5 Day forecast temperatures.
+  
    let roundTemp1 = Math.floor(response.list[6].main.temp);
    let roundTemp2 = Math.floor(response.list[14].main.temp);
    let roundTemp3 = Math.floor(response.list[22].main.temp);
@@ -175,11 +179,12 @@ $(searchCity).on("click", function(event) {
     $("#temp-5").html(roundTemp5 + "º F");
     $("#hum-5").html(response.list[38].main.humidity + " %");
 
+    currentWeather()
+
   });
+}
 
-});
-
-//Create buttons for searched cities
+// Create list of buttons from searched cities.
 
 function renderCityButtons() {
     $("#city-button").empty();
@@ -206,7 +211,7 @@ function renderCityButtons() {
 
       var city = $("#city-input").val().trim();
       cities.push(city);
-
+     
       renderCityButtons();
       localStorage.setItem("city", JSON.stringify(cities));
     });
@@ -214,9 +219,12 @@ function renderCityButtons() {
 
 // Return results for previously searched cities on already rendered buttons.
 
-
 $(document).on("click", "li", function () {
+
+  var chosenCity = $(this).attr("data-name")
    
-  console.log("run");
- 
+  $("#city-input").val(chosenCity);
+
+  forecastWeather()
+
  });
