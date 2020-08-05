@@ -18,12 +18,12 @@ Buttons will remain despite navigating away from the page or reloading it.
 ![Weather dashboard screenshot.](Assets/Weather-Dashboard.png)
 
 ***Languages:***
-HTML
-CSS & Bootstrap
-JavaScript
-jQuery
-Ajax
+- HTML
+- CSS & Bootstrap
+- JavaScript
+- jQuery
+- Ajax
 
 ***Links:***
-[Application]()
-[Github](https://github.com/BwayCarl/weather-dashboard)
+- [Weather Dashboard Application]()
+- [Github Repository](https://github.com/BwayCarl/weather-dashboard)
